@@ -1,0 +1,569 @@
+==> Dev Contacts: 
+DOS:
+	IDC: Mehul Sheth (mehul.sheth@oracle.com)
+
+Environment related - Basavaraj Allundi, Bijendra Behera (IDC)
+
+
+
+================================================================ DOS ================================================================
+
+==> Data Orchestration Service: https://confluence.oci.oraclecorp.com/display/DOS/Data+Orchestration+Service+Home
+
+
+==> Architecture Diagram:
+Data Orchestration Service - Design and Architecture: https://confluence.oci.oraclecorp.com/display/DOS/Data+Orchestration+Service+-+Design+and+Architecture
+Data Integration Service(DIS) - Orchestration Feature Security Design and Considerations: https://confluence.oci.oraclecorp.com/display/DOS/Data+Integration+Service%28DIS%29+-+Orchestration+Feature+Security+Design+and+Considerations
+https://confluence.oraclecorp.com/confluence/display/PSR/DOS+Coverage+-+December+Build
+https://confluence.oraclecorp.com/confluence/pages/viewpage.action?pageId=2676053187
+
+
+==> Why not Airflow: https://confluence.oci.oraclecorp.com/display/DOS/Why+not+Airflow	------> very insightful; MUST READ
+
+
+==> Build 21.c.1 uses Airflow version 1.10.14
+
+
+
+======================================================== AIRFLOW ========================================================
+
+==> Apache Airflow - Concepts: https://airflow.apache.org/docs/apache-airflow/stable/concepts/index.html
+
+
+==> In Airflow, a DAG – or a Directed Acyclic Graph – is a collection of all the tasks you want to run, organized in a way that reflects their relationships and dependencies. A DAG is defined in a Python script, which represents the DAGs structure (tasks and their dependencies) as code.
+
+
+==> A Task is the basic unit of execution in Airflow. Tasks are arranged into DAGs, and then have upstream and downstream dependencies set between them into order to express the order they should run in.
+
+There are three basic kinds of Task:
+
+    Operators, predefined task templates that you can string together quickly to build most parts of your DAGs.
+
+    Sensors, a special subclass of Operators which are entirely about waiting for an external event to happen.
+
+    A TaskFlow-decorated @task, which is a custom Python function packaged up as a Task.
+
+
+==> Running DAGs
+DAGs will run in one of two ways:
+
+        When they are triggered either manually or via the API
+
+        On a defined schedule, which is defined as part of the DAG
+
+
+==> DAG Run
+Every time you run a DAG, you are creating a new instance of that DAG which Airflow calls a DAG Run. DAG Runs can run in parallel for the same DAG, and each has a defined execution_date, which identifies the logical date and time it is running for - not the actual time when it was started.
+
+
+==> Task Instance
+In much the same way a DAG instantiates into a DAG Run every time it’s run, Tasks specified inside a DAG also instantiate into Task Instances along with it.
+An instance of a Task is a specific run of that task for a given DAG (and thus for a given execution_date). They are also the representation of a Task that has state, representing what stage of the lifecycle it is in.
+
+
+==> Configuration Reference: https://airflow.apache.org/docs/apache-airflow/stable/configurations-ref.html
+
+parallelism is better seen as max_active_tasks_total. You set it to 8, saying "I only want 8 tasks running at one time between all the workers".
+
+dag_concurrency is better as max_active_tasks_for_worker. You set it to 4, saying "I only want each worker to run 4 task instances at a time, max".
+
+The other answer is only partially correct:
+
+dag_concurrency does not explicitly control tasks per worker. dag_concurrency is the number of tasks running simultaneously per dag_run. So if your DAG has a place where 10 tasks could be running simultaneously but you want to limit the traffic to the workers you would set dag_concurrency lower. 
+
+
+==> Setting Configuration Options: https://airflow.apache.org/docs/apache-airflow/stable/howto/set-config.html
+
+The universal order of precedence for all configuration options is as follows:
+    1. set as an environment variable (AIRFLOW__CORE__SQL_ALCHEMY_CONN)
+
+    2. set as a command environment variable (AIRFLOW__CORE__SQL_ALCHEMY_CONN_CMD)
+
+    3. set as a secret environment variable (AIRFLOW__CORE__SQL_ALCHEMY_CONN_SECRET)
+
+    4. set in airflow.cfg
+
+    5. command in airflow.cfg
+
+    6. secret key in airflow.cfg
+
+    7. Airflow’s built in defaults
+
+You can check the current configuration with the "airflow config list" command.
+
+If you only want to see the value for one option, you can use "airflow config get-value" command as in the example below.
+
+$ airflow config get-value core executor
+SequentialExecutor
+
+
+==> DAG Runs: https://airflow.apache.org/docs/apache-airflow/stable/dag-run.html
+$ airflow trigger_dag <dag_id>
+
+go inside container and then execute this command
+ideally any container should be ok; but better to do it from scheduler
+
+$ sudo odoctl docker exec -it 84f91da86ea3 bash
+bash-4.2$ pwd
+/usr/local/airflow
+
+$ ls -lhrt
+total 53K
+drwxr-xr-x 5 odosvc odosvc   63 Aug  2 14:13 tests
+-rw-r--r-- 1 odosvc odosvc 2.6K Aug  4 10:46 unittests.cfg
+drwxr-xr-x 1 odosvc odosvc   25 Aug  4 10:46 config
+drwxr-xr-x 1 odosvc odosvc   25 Aug  4 10:46 lib
+drwxr-xr-x 1 odosvc odosvc   36 Aug  4 10:46 plugins
+drwxr-xr-x 3 odosvc odosvc   32 Aug  6 07:05 logs
+-rw-r--r-- 1 odosvc odosvc  41K Aug 13 12:23 airflow.cfg
+drwxrwxr-x 8 odosvc odosvc   10 Aug 16 05:58 dags
+
+$ cd dags/
+$ ls -lhrt
+total 51K
+-rwxr-xr-x  1 odosvc odosvc 563 Mar  5 09:25 hello_world.py
+drwxr-xr-x  3 odosvc odosvc   1 Jul  8 15:50 ocid1.disworkspace.oc1.iad.anuwcljstodao7aah3awqaeifk3ym66stdqloexv3rdn3rfuhoas7utlrdfa
+drwxr-xr-x  3 odosvc odosvc   1 Jul 16 10:20 ocid1.disworkspace.oc1.iad.anuwcljrtodao7aak4ffkedr2jqq4ffktvefflavt6iklye7csjpbvd3q43a
+drwxr-xr-x  3 odosvc odosvc   1 Jul 19 07:12 ocid1.disworkspace.oc1.iad.anuwcljttodao7aav66ojuqg4gohx72hizxrva2b44qlxnzz3wwfqwdxzisq
+drwxr-xr-x  6 odosvc odosvc   4 Jul 23 06:45 ocid1.disworkspace.oc1.iad.anuwcljttodao7aaylipsezqtnob7sld54duvilwb5ghxxnj2frjzi4ydiuq
+drwxr-xr-x 29 odosvc odosvc  27 Aug  3 14:13 ocid1.disworkspace.oc1.iad.anuwcljstodao7aarujibl5p53qs7ovgskwnhnd7hqcfj7g6f4gruywqkafq
+-rw-r--r--  1 odosvc odosvc 426 Aug  4 08:35 add_dagbags.py
+-rw-r--r--  1 odosvc odosvc 793 Aug  4 08:35 canary_dag.py
+-rw-r--r--  1 odosvc odosvc 18K Aug 13 15:32 sanitize_airflow.py
+drwxr-xr-x  2 odosvc odosvc   4 Aug 13 15:32 __pycache__
+
+
+
+==> Scaling Out Airflow: https://www.astronomer.io/guides/airflow-scaling-workers
+
+
+==> Usecases:
+1. Create 20 SQL Type Task 
+	Project --> Task --> Sql Task
+	Publish All 20. SQL Task to Application (then only available for creating Pipeline)
+2. Create 10 Pipeline
+	Project --> Pipeline-->  2 SQL Task in each Pipeline in Sequential Order
+3. Create 10 Pipeline Task
+	Project --> Task --> Pipeline (select pipeline create above, one-by-one)
+	Publish all 10 Pipeline Task Create to Application 
+4. Go to Application Where Pipeline Task and Pipeline are Published
+5. Create Scheduler ( Create only once and reuse multiple times only need to change the timing for run)
+	re-use if every-time you are running on 00th Minute, if need to run on 5th Minute then need to Create one.
+6. Go to the Task Tab in same Application
+	Click on 3 dots for the Published Pipeline Task in step 3 and click on schedule
+7. Select the scheduler create 
+8. Inside Task Scheduler you will be able to see the scheduled task Just created and it will run as per the schedule
+
+
+==> Early Engineering DOS (Paramesh’s POC) :https://confluence.oraclecorp.com/confluence/pages/viewpage.action?pageId=2120869146
+
+
+==> ERP Connector
+https://confluence.oraclecorp.com/confluence/display/PSR/ERP+connector
+https://confluence.oraclecorp.com/confluence/display/PSR/ERP+Connector+-+Jan+Build+21.b.0
+
+
+==> Pipeline execution - customer stories: https://confluence.oci.oraclecorp.com/pages/viewpage.action?spaceKey=DOS&title=Pipeline+execution+-+customer+stories
+
+
+==> bulk data loader feature: https://jira.oci.oraclecorp.com/browse/DIS-3720
+to support multiple data loader tasks - 100s of 1000s data tables
+Refer: https://confluence.oci.oraclecorp.com/display/DIS/Data+Loader+-+Bulk+Upload
+
+
+
+================================================================ ACCESS TO DIS/DOS ENVIRONMENT ================================================================
+
+================================================ PERMISSIONS - GROUPS ================================================
+
+==> Permission groups requested as part of DIS, should be applicable here.
+
+
+
+================================================ ENVIRONMENT DETAILS ================================================
+
+==> Tenancies
+psr : psrdjsm (where all our DB/ATP/ADW are located)
+DCMS Pre-prod customer tenancy : psrdjsm
+DIS : dmsdevtenancy
+DOS : dmsdevtenancy
+
+its normal login to DIS
+and there is workspace there where we create DF and all for DOS
+
+Currently DIS instance PSR uses is in dev tenancy which is dedicated for PSR testing
+
+Workspace: PSR_7APR_PNE_THROUGHPUT
+
+
+==> DB and Storage and Client Machines Details: https://confluence.oraclecorp.com/confluence/display/PSR/DB+and+Storage+and+Client+Machines+Details
+DB to OSS Data Loader Task timings:
+- CUSTOMER table: 2 minutes 29 seconds
+- SEED_DATA table: 6 minutes 37 seconds
+- CATALOG_RETURNS table: 16 minutes 4 seconds
+
+
+==> Getting and activating YubiKey:
+https://confluence.oci.oraclecorp.com/pages/viewpage.action?pageId=177071915
+https://confluence.oraclecorp.com/confluence/pages/viewpage.action?spaceKey=OCIID&title=Activating+Your+YubiKey+for+OCI+Access
+https://confluence.oraclecorp.com/confluence/pages/viewpage.action?pageId=2352284229#ActivatingYourYubiKeyforOCIAccess-ActivateInPermissions
+
+
+==> Infra details
+DISQA-IAD Infrastructure Details: https://confluence.oci.oraclecorp.com/display/DIS/DISQA-IAD+Infrastructure+Details	------> DIS wiki
+DB's & Storage and Client Machines Details: https://confluence.oraclecorp.com/confluence/pages/viewpage.action?pageId=1685786509
+DIS2-IAD 21.c Env details: https://confluence.oraclecorp.com/confluence/display/PSR/DIS2-IAD+21.c+Env+details	------> REFER THIS & BELOW
+DOS Results Summary page -21.c: https://confluence.oraclecorp.com/confluence/display/PSR/DOS+Results+Summary+page+-21.c	------> Updated VM Shapes
+
+
+
+==> Latest DIS2-IAD URL: https://console.us-ashburn-1.oraclecloud.com/dis?configoverride={"plugins":{"dis":{"name":"dis","path":"/dis","url":"https://objectstorage.us-ashburn-1.oraclecloud.com/p/hi2qVFX1THrdwHdBaPO0kkeEeMdBFzSQGiGZzBsC8fpukAtmztUMU9oarndXUmbD/n/disdevtenancy/b/dis-plugin-bucket/o/0.2999.0-bitbucket-ui/index.tpl.html","type":"Sandbox"}},"navigationTrees":{"default":[{"appendPath":"/disWorkspaces","pluginName":"dis","labelKey":"Data Integration"}]},"features":{"ociInstanceName":"DIS_QA_SINGLE"}}&&tenant=bmc_operator_access&provider=ocna-saml&override_tenant=ocid1.tenancy.oc1..aaaaaaaa3nawwqfzplgms3u4n7kobqqio344sqkn3e75zpsek7kxgaskwsba
+
+Compartment: PSRCompartment
+Workspace: 
+
+
+==> Airflow UI - https://144.25.82.200:8009/	------> NOW DEPRECATED
+
+
+==> Modify your .bashprofile to include the below 2 lines at the beginning of the file.
+Host *
+    User kanghosh
+
+/usr/lib/x86_64-linux-gnu/opensc-pkcs11.so	------> if using Ubuntu Linux
+
+
+==> SSH access:
+Airflow Scheduler VM:
+$ ssh -J overlay-host.bastion.us-ashburn-1.oci.oracleiaas.com,ocid1.bastion.oc1.iad.amaaaaaatodao7aaeyooepfauzmq2kqmivw2w36kknnpu2i6wcwglanrhn6a-192.168.232.58 10.1.130.9
+
+Airflow Webserver VM:
+$ ssh -J overlay-host.bastion.us-ashburn-1.oci.oracleiaas.com,ocid1.bastion.oc1.iad.amaaaaaatodao7aaeyooepfauzmq2kqmivw2w36kknnpu2i6wcwglanrhn6a-192.168.232.58 10.1.130.11
+
+Airflow Celery VM:
+$ ssh -J overlay-host.bastion.us-ashburn-1.oci.oracleiaas.com,ocid1.bastion.oc1.iad.amaaaaaatodao7aaeyooepfauzmq2kqmivw2w36kknnpu2i6wcwglanrhn6a-192.168.232.58 10.1.130.10
+
+
+==> File transfer (scp) commands
+
+$ scp -J overlay-host.bastion.us-ashburn-1.oci.oracleiaas.com,ocid1.bastion.oc1.iad.amaaaaaatodao7aaeyooepfauzmq2kqmivw2w36kknnpu2i6wcwglanrhn6a-192.168.232.58 10.1.130.11:/mnt/dis-dp-config/repository/airflow/airflow.cfg /mnt/c/Users/kanghosh.ORADEV/Documents/Oracle/Projects/DataServices/DIS/
+
+NOTE: scp -J option works in OpenSSH v8.0 or above
+For older openssh,
+
+If you have a recent OpenSSH (8.0) locally, you can use the -J (jump) switch:
+	scp -J user@intermediate user@target:/path
+
+With older versions (but at least 7.3), you can use ProxyJump directive, either on command-line:
+	scp -o ProxyJump=user@intermediate user@target:/path
+
+or in ssh_config file, as the answer by @Ángel shows.
+
+There are other options like ProxyCommand or port forwarding, which you can use on even older versions of OpenSSH. These are covered in Does OpenSSH support multihop login? (https://superuser.com/q/1488097/213663)
+
+Since OpenSSH 7.3, you can use -J (jump) switch like:
+	ssh -J user1@host1.example.com user2@host2.example.com
+
+The -J is an equivalent of ProxyJump directive:
+	ssh -o ProxyJump=user1@host1.example.com user2@host2.example.com
+
+Note that with file transfer tools, like scp and sftp, the -J switch is supported since 8.0 only. With older versions (but at least 7.3), use ProxyJump. See How can I download a file from a host I can only SSH to through another host?
+
+$ scp -o ProxyJump=overlay-host.bastion.us-ashburn-1.oci.oracleiaas.com,ocid1.bastion.oc1.iad.amaaaaaatodao7aaeyooepfauzmq2kqmivw2w36kknnpu2i6wcwglanrhn6a-192.168.232.58 10.1.130.11:/mnt/dis-dp-config/repository/airflow/airflow.cfg /mnt/c/Users/kanghosh.ORADEV/Documents/Oracle/Projects/DataServices/DIS/
+
+
+$ scp -o ProxyJump=overlay-host.bastion.us-ashburn-1.oci.oracleiaas.com,ocid1.bastion.oc1.iad.amaaaaaatodao7aaeyooepfauzmq2kqmivw2w36kknnpu2i6wcwglanrhn6a-192.168.232.58 /mnt/c/Users/kanghosh.ORADEV/Documents/Oracle/Projects/DataServices/DOS/sanitize_airflow.py 10.1.130.11:/mnt/dis-dp-data/airflow/dag
+
+
+==> ATP Details:
+ADMIN / E3vgFnK42qy8eKZr
+
+==> Accessing ATP-D's SQL Developer UI from OCI Console:
+- Navigate to DIS Console UI --> click on top left hamburger menu - Oracle Database - Autonomous Transaction Processing
+- Select Conpartment: dis_qa_database --> Click on Result: System ATP for deployment dis-qa (https://console.us-ashburn-1.oraclecloud.com/db/adb/ocid1.autonomousdatabase.oc1.iad.abuwcljsqktyyfheul4wryhrtclhuhkfvosem25mjpbzw77dyiyxpx4j665a)
+- Go to Tools tab --> Click on Open Database Actions and enter the below credentials
+admin/E3vgFnK42qy8eKZr
+It will bring up the Launchpad UI for the ATP Database Actions
+- Click on SQL, under Development section, to bring up the SQL Developer like online UI
+- Select Schema: AIRFLOW
+
+==> Alternatively, one can directly access the ATP Console below urls in order to:
+https://ynuxhymylzisvpi-systematp.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/_sdw/
+https://ynuxhymylzisvpi-systematp.adb.us-ashburn-1.oraclecloudapps.com/ords/admin/_sdw/?nav=worksheet	------> SQL Developer like Utility UI
+
+
+
+==> Sample SQL Task (SQL Stored Procedure)
+
+create or replace PROCEDURE PSRSTOREDPROCEDURE1 AS 
+BEGIN
+   -- sys.dbms_output.put_line('Stored PRocedure started' || to_char(systimestamp, 'hh24:mi:ss.ff'));
+   -- Pause for 2 mins
+   sys.dbms_session.sleep(120);
+   --sys.dbms_output.put_line('Stored PRocedure ended' || to_char(systimestamp, 'hh24:mi:ss.ff'));
+END PSRSTOREDPROCEDURE1;
+
+
+
+================================================================ MONITORING & DIAGNOSTICS INFO ================================================================
+
+==> Airflow for Orchestration & Scheduling - Early Engineering for Data Orchestration Service: https://confluence.oraclecorp.com/confluence/pages/viewpage.action?pageId=2120869146
+
+==> PSR - Best practices & Sizing: https://confluence.oci.oraclecorp.com/pages/viewpage.action?pageId=303811176
+By Paramesh on Standalone Airflow setup
+
+==> Airflow Configurations & Tunings Proposal - 21.c.0: https://confluence.oraclecorp.com/confluence/pages/viewpage.action?pageId=3145364032
+
+==> DOS - General Information and Troubleshooting: https://confluence.oraclecorp.com/confluence/display/PSR/DOS+-+General+Information+and+Troubleshooting
+
+
+==> DevOps ODO Pipelines to deploy/redeploy DIS and DOS components on DIS2-IAD env (identified by tenant):
+https://devops.oci.oraclecorp.com/odo/applications?regionId=iad-ad-1&filter=iad-qa
+
+Can change tenant to deploy to other regions
+For Airflow, search for pipelines with the airflow in the names from the list.
+
+For each component, there is a separate pipeline created and the pipeline has to be executed for each AD for that component
+
+
+==> VM restart:
+$ sudo reboot
+	will reboot the node
+
+
+==> Restarting specific dockerized services
+$ sudo odoctl docker ps
+$ sudo odoctl docker restart <container id>
+
+post restart always execute the /postDeployValidate.sh script in the same container
+$ sudo odoctl docker exec -it <container id> bash
+bash-4.2$ /postDeployValidate.sh
+airflow component deployed: worker
+Health check result:  {status:OK}
+ 200
+Health check passed
+
+NOTE: you can restart in any sequence.. we usually follow webserver, scheduler and celery
+Initdb and Datatier are not needed to be restarted for airflow.cfg change
+
+
+==> Getting into docker containers
+$ sudo odoctl docker exec -it <container id> bash
+
+
+==> switching to "odosvc" user on the VM:
+$ sudo -u odosvc -s
+
+==> Config file location:
+Airflow.cfg:
+	/mnt/dis-dp-config/repository/airflow/airflow.cfg	------> Change this config file, if there is a need to modify any parameters
+		Use sudo to make changes to the config file
+		$ sudo \vi airflow.cfg
+	/mnt/dis-dp-data/repository/airflow/airflow.cfg
+
+/mnt/dis-dp-data is where dags are placed.
+
+
+Refer:
+performance-related sanitized airflow config options: https://gist.github.com/7yl4r/7b7e90d1155337c0a31ad9e285a85e08
+
+
+==> Logs location
+Airflow webserver:
+$ cd /var/odo/volumes/dis-dp-service-iad-qa-airflow-webserver/logs/airflow/
+
+Airflow Scheduler:
+$ cd /var/odo/volumes/dis-dp-service-iad-qa-airflow-scheduler/logs/airflow/
+
+Celery worker:
+$ cd /var/odo/volumes/dis-dp-service-iad-qa-airflow-celery/logs/airflow/
+
+Redis server:
+$ cd /var/odo/volumes/dis-dp-service-iad-qa-airflow-datatier-redis-server/logs/dos-redis
+
+all components write to a "current" log file which is rolled over daily/ever 24 hours.
+
+
+==> The moment a task is scheduled dags (unique .py files) get created.
+When the schedule is triggered, the task instances are created which are referred to as dags in filesystem (*_RUN_ONCE.py files).
+
+==> DAGs location in Airflow webserver: /mnt/dis-dp-data/airflow/dag/
+All .py files
+# of DAG in Airflow system
+$ cd /mnt/dis-dp-data/airflow/dag/
+$ find . -name "*.py" | wc -l
+OR
+$ find . -iname "*.py" | wc -l 
+
+Each workspace will have it's own folder and inside each workspace folder will have the DAGs for that workspace. So the DAGs count should be captured recursively.
+
+$ find . -iname "*_RUN_ONCE.py" | wc -l
+
+[kanghosh@dis-dp-airflow-webserver-iad-qa-01001 dag]$ pwd
+/mnt/dis-dp-data/airflow/dag
+[kanghosh@dis-dp-airflow-webserver-iad-qa-01001 dag]$ ls -lhart
+total 52K
+drwxrwxr-x  3 opc    opc      1 Nov 11  2020 ..
+-rwxr-xr-x  1 odosvc odosvc 563 Mar  5 09:25 hello_world.py
+drwxr-xr-x  3 odosvc odosvc   1 Jul  8 15:50 ocid1.disworkspace.oc1.iad.anuwcljstodao7aah3awqaeifk3ym66stdqloexv3rdn3rfuhoas7utlrdfa
+drwxr-xr-x 18 odosvc odosvc  16 Jul 11 12:29 ocid1.disworkspace.oc1.iad.anuwcljstodao7aarujibl5p53qs7ovgskwnhnd7hqcfj7g6f4gruywqkafq
+drwxr-xr-x  3 odosvc odosvc   1 Jul 16 10:20 ocid1.disworkspace.oc1.iad.anuwcljrtodao7aak4ffkedr2jqq4ffktvefflavt6iklye7csjpbvd3q43a
+drwxrwxr-x  8 odosvc odosvc  10 Jul 19 07:12 .
+drwxr-xr-x  3 odosvc odosvc   1 Jul 19 07:12 ocid1.disworkspace.oc1.iad.anuwcljttodao7aav66ojuqg4gohx72hizxrva2b44qlxnzz3wwfqwdxzisq
+-rw-r--r--  1 odosvc odosvc 426 Jul 22 07:35 add_dagbags.py
+-rw-r--r--  1 odosvc odosvc 793 Jul 22 07:35 canary_dag.py
+-rw-r--r--  1 odosvc odosvc 17K Jul 22 07:35 sanitize_airflow.py
+drwxr-xr-x  2 odosvc odosvc   4 Jul 22 07:37 __pycache__
+drwxr-xr-x  6 odosvc odosvc   4 Jul 23 06:45 ocid1.disworkspace.oc1.iad.anuwcljttodao7aaylipsezqtnob7sld54duvilwb5ghxxnj2frjzi4ydiuq
+
+
+==> DI - DOS Airflow System Metrics: https://grafana.oci.oraclecorp.com/d/BSDMIl2Gk/di-dos-airflow-system-metrics?orgId=1&var-realm=oc1&var-region=us-ashburn-1&var-ad=All&var-granularity=auto&var-component=dmsdevtenancy.dis-odo-dev&var-project=hostmetrics&from=1627561800000&to=1627562520000
+
+
+==> Lumberjack UI for Airflow or DIS logs:
+https://devops.oci.oraclecorp.com/logs/v3?ad=All%20ADs&displayedFields%5B0%5D=ts&displayedFields%5B1%5D=msg&from=2021-10-07T23%3A22%3A54.936Z&namespaces%5B0%5D%5Bcompartment%5D=ocid1.compartment.oc1..aaaaaaaaaeigtua6qucbyroliv7dvemgliqyq4mvoqtwuzva6u6f4klisufa&namespaces%5B0%5D%5Bnamespace%5D=dos-airflow-service&region=us-ashburn-1&sortOrder=DESC&to=2021-10-08T05%3A22%3A54.936Z&tenant=dmsdevtenancy&fieldFilters%5B0%5D%5Bvalue%5D=%2Fusr%2Flocal%2Fairflow%2Fdags%2Fsanitize_airflow.py&fieldFilters%5B0%5D%5BfieldName%5D=%23pathname&fieldFilters%5B0%5D%5Boperator%5D=%3D&fieldFilters%5B0%5D%5BfieldType%5D=SORTED&fieldFilters%5B0%5D%5Bhidden%5D=false&lineWrap=false&showAggregation=false
+
+Sanitize_airflow logs: https://devops.oci.oraclecorp.com/t/_J0O0y
+
+General steps for using the Lumberjack UI
+Select the below or as per your requirements:
+Realm: OC1
+Region: us-ashburn-1 (All ADs)
+Tenant name: dmsdevtenancy
+Namespace: 
+	_dos-airflow-service	--> for Airflow logs
+	OR
+	_dis-dp-service			--> for DIS logs
+filters: 
+	#pathname=/usr/local/airflow/dags/sanitize_airflow.py
+	OR
+	msg = *94ee1348-bc19-4cbf-8b46-ec72abe9e090	--> Task Instance ID
+
+
+
+==> Some useful Queries in ATP:
+-- Checking dags in the system which have been scheduled:
+select * from AIRFLOW.DAG order by last_scheduler_run DESC;
+
+-- Checking for task instances and dag runs with dag_id:
+select * from airflow.TASK_INSTANCE where DAG_ID like ‘%airflow%‘;
+select * from AIRFLOW.DAG_RUN order by start_date DESC;
+select * from AIRFLOW.DAG_RUN where dag_id like 'sanitize_%' order by start_date DESC;
+select * from AIRFLOW.DAG_RUN where dag_id='ceb15569-3bcf-4d45-85dc-25573988cf51' order by start_date DESC;
+select * from AIRFLOW.TASK_INSTANCE where dag_id like 'sanitize_%' order by start_date DESC;
+select state, start_date, end_date from airflow.DAG_RUN where DAG_ID like ‘%airflow%’ order by start_date desc;
+
+-- Checking for task instances based on Task ID:
+select * from AIRFLOW.TASK_INSTANCE where TASK_ID like 'PIPELINE%' order by execution_date DESC;
+select * from AIRFLOW.TASK_INSTANCE where TASK_ID like 'PSR_PIPELINE%' order by execution_date DESC;
+select * from AIRFLOW.TASK_INSTANCE WHERE TASK_ID LIKE 'PSR_PIPELINETASK_DEMO4' ORDER BY start_date DESC;
+select * from AIRFLOW.TASK_INSTANCE where dag_id like 'sanitize_%' AND EXECUTION_DATE=TO_DATE('2021-08-02 04:00:00', 'YYYY-MM-DD HH24:MI:SS');
+
+-- Checking for a particular Pipeline Task with using the Task Instance Key from UI 
+select * from AIRFLOW.TASK_INSTANCE where DAG_ID like '%4808f939-6888-4fc6-9f11-a6a8b765229d%' order by start_date;
+
+-- Checking for task instances with status as 'running':
+select * from AIRFLOW.TASK_INSTANCE where STATE='running';
+select * from AIRFLOW.TASK_INSTANCE where STATE='running' order by start_date DESC;
+select count(*) from AIRFLOW.TASK_INSTANCE where STATE='running';
+
+-- Find all task instances in Airflow based on their state
+SELECT COUNT(*), STATE FROM AIRFLOW.TASK_INSTANCE GROUP BY STATE;
+
+-- Find all non-terminal task instances in Airflow based on their state and Start Date
+SELECT COUNT(*), STATE FROM AIRFLOW.TASK_INSTANCE WHERE STATE NOT IN ( ‘success’, ‘upstream_failed’, ‘failed’ ) AND START_DATE BETWEEN TO_DATE(‘2021-07-16 13:05:00’, ‘YYYY-MM-DD HH24:MI:SS’) AND TO_DATE(‘2021-07-16 14:05:00’, ‘YYYY-MM-DD HH24:MI:SS’) GROUP BY STATE;
+
+-- Select all task instances which were started between certain interval
+SELECT count(*) FROM AIRFLOW.TASK_INSTANCE WHERE START_DATE BETWEEN TO_DATE(‘2021-07-16 13:05:00’, ‘YYYY-MM-DD HH24:MI:SS’) AND TO_DATE(‘2021-07-16 14:05:00’, ‘YYYY-MM-DD HH24:MI:SS’);
+
+-- Select all task instances which executed for more than an hour
+SELECT * FROM AIRFLOW.TASK_INSTANCE WHERE EXTRACT(HOUR FROM(END_DATE - START_DATE)) >= 1;
+
+-- Select all task instances which executed for more than an hour and were started between certain interval
+SELECT * FROM AIRFLOW.TASK_INSTANCE WHERE EXTRACT(HOUR FROM(END_DATE - START_DATE)) >= 1 AND START_DATE BETWEEN TO_DATE(‘2021-07-16 12:05:00’, ‘YYYY-MM-DD HH24:MI:SS’) AND TO_DATE(‘2021-07-16 13:05:00’, ‘YYYY-MM-DD HH24:MI:SS’);
+
+
+Log messages:
+*Process each file at most once every*
+
+#pathname=/usr/local/airflow/dags/sanitize_airflow.py
+
+
+
+================================================================ BUGS & JIRA DETAILS FOR DIS/DOS ================================================================
+
+==> Jira issues for DIS and allied services:
+DIS
+DOS
+DCMS
+
+Subject line starts with: 
+	PSR:PERF:DIS:
+	PSR:PERF:DOS:
+	PSR:PERF:DCMS:
+
+Labels: PSRBUG, PSR-DIS, PAAS-PSR-DIS, PSR-DOS
+
+Priority: Not needed while raising
+
+Jira Project for Issues: https://jira.oci.oraclecorp.com/browse/DOS
+
+Active bugs:
+https://jira.oci.oraclecorp.com/browse/DOS-3550 - PSR:PERF:DOS: Airflow marks pipeline task sensors as "Dependencies not met"
+https://jira.oci.oraclecorp.com/browse/DOS-3479 - Intermittently long running Pipeline during concurrent runs
+https://jira.oci.oraclecorp.com/browse/DOS-3447 - Sanitize Airflow task failing in DIS2-IAD, delay observed in task execution due to high number of DAGs
+https://jira.oci.oraclecorp.com/browse/DOS-3413 - Optimize/reduce Pipeline execution time from current 10-12 minutes per execution
+https://jira.oci.oraclecorp.com/browse/DOS-2145 - 
+https://jira.oci.oraclecorp.com/browse/DOS-3832 - PSR:PERF:DOS: Pipelines with 5 parallel SQL tasks taking longer to complete
+
+
+Enhancement Request:
+https://jira.oci.oraclecorp.com/browse/DOS-3823 - PSR:PERF:DOS:Provision to trigger sanitize_airflow.py (cleanup dag) manually outside of regular schedule
+
+
+
+
+./dis-dp-data/repository/airflow/airflow.cfg ./dis-dp-config/repository/airflow/airflow.cfg
+
+
+
+
+Data Asset: PSR_DA_SRC_DB
+Connection: PSR_DA_SRC_DB_C
+Host: 144.25.38.150
+Port: 1521
+Database: orclpdb.psrdjsmpublic.psrdjsm1iad.oraclevcn.com
+Schema: TPCDSUSER3
+Data Entity: CUSTOMER
+
+Data Asset: DIS_DEV_DA_TGT_OSS
+Connection: DIS_DEV_DA_TGT_OSS_C
+Namespace: psrdjsm
+tenantOcid: ocid1.tenancy.oc1..aaaaaaaakvliak2jbfbqjsywygoou3p2d2olp6u3g53k6nshns5b5sqk4y4q
+OCI region: us-ashburn-1
+Compartment: DIS
+Schema/Bucket: PSR_DIS_DOS_DL_TGT
+Data Entity: CUSTOMER_DL_DOS_TGT_4/
+
+
+
+https://console.us-ashburn-1.oraclecloud.com/dis?configoverride={"plugins":{"dis":{"name":"dis","path":"/dis","url":"https://objectstorage.us-ashburn-1.oraclecloud.com/p/hi2qVFX1THrdwHdBaPO0kkeEeMdBFzSQGiGZzBsC8fpukAtmztUMU9oarndXUmbD/n/disdevtenancy/b/dis-plugin-bucket/o/0.2704.0-bitbucket-ui/index.tpl.html","type":"Sandbox"}},"navigationTrees":{"default":[{"appendPath":"/disWorkspaces","pluginName":"dis","labelKey":"Data%20Integration"}]},"features":{"ociInstanceName":"DIS_QA_SINGLE"}}&&tenant=bmc_operator_access&provider=ocna-saml&override_tenant=ocid1.tenancy.oc1..aaaaaaaa3nawwqfzplgms3u4n7kobqqio344sqkn3e75zpsek7kxgaskwsba
+
+
+
+
+==> 5 Parallel SQL Tasks
+
+PSR_PIPELINE_TASK_SQL_1_1632298543609	Success	Pipeline	-	-	Wed, Sep 22, 2021, 08:15:43 UTC	Wed, Sep 22, 2021, 08:35:32 UTC	19 minutes, 48 seconds	Unknown	dedd9a89-6078-43ca-9d60-0d53a9032122	
+PSR_SQLTASK_4_1632298663512	Success	SQL	-	-	Wed, Sep 22, 2021, 08:17:43 UTC	Wed, Sep 22, 2021, 08:19:50 UTC	2 minutes, 7 seconds	User	009a0989-5bb4-44fd-8580-042cd3621e32	
+PSR_SQLTASK_2_1632298663889	Success	SQL	-	-	Wed, Sep 22, 2021, 08:17:43 UTC	Wed, Sep 22, 2021, 08:19:50 UTC	2 minutes, 6 seconds	User	17be7917-405d-44d1-8661-a8716ae95b3e	
+PSR_SQLTASK_3_1632298665540	Success	SQL	-	-	Wed, Sep 22, 2021, 08:17:45 UTC	Wed, Sep 22, 2021, 08:19:52 UTC	2 minutes, 7 seconds	User	d8e23f29-d4dd-4824-8ac9-bf9fa1e577e5	
+PSR_SQLTASK_1_1632298666670	Success	SQL	-	-	Wed, Sep 22, 2021, 08:17:46 UTC	Wed, Sep 22, 2021, 08:19:52 UTC	2 minutes, 5 seconds	User	0231bed8-2be4-45fe-98b0-11fc84cb9cff	
+PSR_SQLTASK_5_1632298667924	Success	SQL	-	-	Wed, Sep 22, 2021, 08:17:47 UTC	Wed, Sep 22, 2021, 08:19:52 UTC	2 minutes, 4 seconds	User	4282f2c6-a02c-43d2-acab-c4af9db30f1f	
+
+
+
+
+
+
+

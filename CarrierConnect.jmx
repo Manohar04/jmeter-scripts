@@ -1,0 +1,1123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.1.1 r1855137">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="CarrierConnect" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="P_Instance" elementType="Argument">
+            <stringProp name="Argument.name">P_Instance</stringProp>
+            <stringProp name="Argument.value">carrier-connect</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="P_TokenURL" elementType="Argument">
+            <stringProp name="Argument.name">P_TokenURL</stringProp>
+            <stringProp name="Argument.value">spdev-abvolvobc.identity.oraclecloud.com</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="P_CurrentDate" elementType="Argument">
+            <stringProp name="Argument.name">P_CurrentDate</stringProp>
+            <stringProp name="Argument.value">${__time(yyyy-MM-dd&apos;T&apos;HH:mm:ss+03:00,)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="P_EarlyPick" elementType="Argument">
+            <stringProp name="Argument.name">P_EarlyPick</stringProp>
+            <stringProp name="Argument.value">${__timeShift(yyyy-MM-dd&apos;T&apos;HH:mm:ss+03:00,,P1D,,)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="P_DeliveryDate" elementType="Argument">
+            <stringProp name="Argument.name">P_DeliveryDate</stringProp>
+            <stringProp name="Argument.value">${__timeShift(yyyy-MM-dd&apos;T&apos;HH:mm:ss+03:00,,P6D,,)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="P_EarlyDeliveryDate" elementType="Argument">
+            <stringProp name="Argument.name">P_EarlyDeliveryDate</stringProp>
+            <stringProp name="Argument.value">${__timeShift(yyyy-MM-dd&apos;T&apos;HH:mm:ss+03:00,,P4D,,)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="P_PickupDate" elementType="Argument">
+            <stringProp name="Argument.name">P_PickupDate</stringProp>
+            <stringProp name="Argument.value">${__timeShift(yyyy-MM-dd&apos;T&apos;HH:mm:ss+03:00,,P2D,,)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="P_bcURL" elementType="Argument">
+            <stringProp name="Argument.name">P_bcURL</stringProp>
+            <stringProp name="Argument.value">otbservice5-abvolvobc-fra.blockchain.ocp.oraclecloud.com</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="P_CarrierURL" elementType="Argument">
+            <stringProp name="Argument.name">P_CarrierURL</stringProp>
+            <stringProp name="Argument.value">carrierconnect5-2-abvolvobc-fra.blockchain.ocp.oraclecloud.com</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="Filepath" elementType="Argument">
+            <stringProp name="Argument.name">Filepath</stringProp>
+            <stringProp name="Argument.value">C:\Users\rsnreddy\Desktop\Volvo\TestResults\Nov17</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+        <stringProp name="TestPlan.comments">carrier-connect</stringProp>
+      </Arguments>
+      <hashTree/>
+      <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+        <collectionProp name="CookieManager.cookies"/>
+        <boolProp name="CookieManager.clearEachIteration">true</boolProp>
+      </CookieManager>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="P_Shipment" enabled="true">
+        <stringProp name="filename">C:/Users/rsnreddy/Desktop/Volvo/TestData/CreateShipment1.txt</stringProp>
+        <stringProp name="fileEncoding"></stringProp>
+        <stringProp name="variableNames">P_Shipment</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <stringProp name="delimiter">\t</stringProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="P_shipmentToken" enabled="true">
+        <stringProp name="filename">C:/Users/rsnreddy/Desktop/Volvo/TestData/ShipmentToken.txt</stringProp>
+        <stringProp name="fileEncoding"></stringProp>
+        <stringProp name="variableNames">P_shipmentToken</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <stringProp name="delimiter">,</stringProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="P_CCToken" enabled="true">
+        <stringProp name="filename">C:/Users/rsnreddy/Desktop/Volvo/TestData/CCToken.txt</stringProp>
+        <stringProp name="fileEncoding"></stringProp>
+        <stringProp name="variableNames">P_CCToken</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <stringProp name="delimiter">,</stringProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="P_Port" enabled="true">
+        <stringProp name="filename">C:/Users/rsnreddy/Desktop/Volvo/TestData/Port.txt</stringProp>
+        <stringProp name="fileEncoding"></stringProp>
+        <stringProp name="variableNames">P_Port</stringProp>
+        <boolProp name="ignoreFirstLine">false</boolProp>
+        <stringProp name="delimiter">,</stringProp>
+        <boolProp name="quotedData">false</boolProp>
+        <boolProp name="recycle">true</boolProp>
+        <boolProp name="stopThread">false</boolProp>
+        <stringProp name="shareMode">shareMode.all</stringProp>
+      </CSVDataSet>
+      <hashTree/>
+      <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="BeanShell Assertion" enabled="true">
+        <stringProp name="BeanShellAssertion.query">${__setProperty(C_CargoAssetId, ${C_CargoAssetId})};</stringProp>
+        <stringProp name="BeanShellAssertion.filename"></stringProp>
+        <stringProp name="BeanShellAssertion.parameters"></stringProp>
+        <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+      </BeanShellAssertion>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Token" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Shipment_Token " enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="grant_type" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">password</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">grant_type</stringProp>
+              </elementProp>
+              <elementProp name="scope" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">https://${P_bcURL}:7443/restproxy</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">scope</stringProp>
+              </elementProp>
+              <elementProp name="username" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">BC_CarrierAdministrator</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">username</stringProp>
+              </elementProp>
+              <elementProp name="password" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">4rfv#EDC@WSX!QAZ</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">password</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${P_TokenURL}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/oauth2/v1/token</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="Content-Type" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Basic T1RCU2VydmljZTUtNHEzNDR2eXl6d3FsdjM0NDd3em91N3cyZHZmaGZ3dHFfQVBQSUQ6NmQxOTJiYmMtOTEwMy00MDJlLTg2ZTAtYTVlNWEzY2ZhNGZj</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Host</stringProp>
+                <stringProp name="Header.value">${P_TokenURL}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Cache-Control</stringProp>
+                <stringProp name="Header.value">no-cache</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept-Encoding</stringProp>
+                <stringProp name="Header.value">gzip, deflate, br</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Connection</stringProp>
+                <stringProp name="Header.value">keep-alive</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Length</stringProp>
+                <stringProp name="Header.value">191</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name"></stringProp>
+                <stringProp name="Header.value"></stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="HTTP Authorization Manager" enabled="true">
+            <collectionProp name="AuthManager.auth_list">
+              <elementProp name="" elementType="Authorization">
+                <stringProp name="Authorization.url">https://${P_TokenURL}</stringProp>
+                <stringProp name="Authorization.username">OTBService5-4q344vyyzwqlv3447wzou7w2dvfhfwtq_APPID</stringProp>
+                <stringProp name="Authorization.password">6d192bbc-9103-402e-86e0-a5e5a3cfa4fc</stringProp>
+                <stringProp name="Authorization.domain"></stringProp>
+                <stringProp name="Authorization.realm"></stringProp>
+              </elementProp>
+            </collectionProp>
+            <boolProp name="AuthManager.controlledByThreadGroup">false</boolProp>
+          </AuthManager>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="C_Token" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">C_Token</stringProp>
+            <stringProp name="RegexExtractor.regex">{&quot;access_token&quot;:&quot;(.*?)&quot;,&quot;token_type&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">C_Token not Found</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <BeanShellListener guiclass="TestBeanGUI" testclass="BeanShellListener" testname="Token" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import java.*;
+
+
+String var1 = vars.get(&quot;C_Token&quot;);
+
+f = new FileOutputStream(&quot;C:\\Users\\rsnreddy\\Desktop\\Volvo\\TestData\\ShipmentToken.txt&quot;, false);
+p = new PrintStream(f);
+
+p.print(var1+&quot;\r\n&quot;);
+
+p.close();
+f.close();
+
+
+//File file = new File(&quot;append.txt&quot;);
+
+/*
+FileWriter fr = new FileWriter(&quot;C:\\Users\\nikhitha.reddy\\Desktop\\Volvo\\Index.txt&quot;, false);
+fr.write(var1);
+fr.close();*/
+
+</stringProp>
+          </BeanShellListener>
+          <hashTree/>
+          <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="IndexID" enabled="false">
+            <collectionProp name="UserParameters.names">
+              <stringProp name="-687022771">IndexID</stringProp>
+            </collectionProp>
+            <collectionProp name="UserParameters.thread_values">
+              <collectionProp name="-1753070663">
+                <stringProp name="187832203">${__UUID}</stringProp>
+              </collectionProp>
+            </collectionProp>
+            <boolProp name="UserParameters.per_iteration">false</boolProp>
+          </UserParameters>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Carrier_Token " enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="grant_type" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">password</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">grant_type</stringProp>
+              </elementProp>
+              <elementProp name="scope" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">https://${P_CarrierURL}:7443/restproxy</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">scope</stringProp>
+              </elementProp>
+              <elementProp name="username" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">BC_CarrierAdministrator</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">username</stringProp>
+              </elementProp>
+              <elementProp name="password" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">4rfv#EDC@WSX!QAZ</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">password</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">spdev-abvolvobc.identity.oraclecloud.com</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/oauth2/v1/token</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="Content-Type" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/x-www-form-urlencoded</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Basic Q2FycmllckNvbm5lY3Q1LTVnYnlpdmduc25ld2plcmNyNGxqZGIzY2pqY3Bvam9xX0FQUElEOjAzMDlhM2ZjLTVkZDMtNDFhMC05ZDBmLTAxNWMwYTA1NTc3Nw== </stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Host</stringProp>
+                <stringProp name="Header.value">spdev-abvolvobc.identity.oraclecloud.com</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Cache-Control</stringProp>
+                <stringProp name="Header.value">no-cache</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept-Encoding</stringProp>
+                <stringProp name="Header.value">gzip, deflate, br</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Connection</stringProp>
+                <stringProp name="Header.value">keep-alive</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Length</stringProp>
+                <stringProp name="Header.value">191</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="HTTP Authorization Manager" enabled="true">
+            <collectionProp name="AuthManager.auth_list">
+              <elementProp name="" elementType="Authorization">
+                <stringProp name="Authorization.url">spdev-abvolvobc.identity.oraclecloud.com</stringProp>
+                <stringProp name="Authorization.username">CarrierConnect5-5gbyivgnsnewjercr4ljdb3cjjcpojoq_APPID</stringProp>
+                <stringProp name="Authorization.password">0309a3fc-5dd3-41a0-9d0f-015c0a055777</stringProp>
+                <stringProp name="Authorization.domain"></stringProp>
+                <stringProp name="Authorization.realm"></stringProp>
+              </elementProp>
+            </collectionProp>
+            <boolProp name="AuthManager.controlledByThreadGroup">false</boolProp>
+          </AuthManager>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="C_Token" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">C_Token</stringProp>
+            <stringProp name="RegexExtractor.regex">{&quot;access_token&quot;:&quot;(.*?)&quot;,&quot;token_type&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">C_Token not Found</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <BeanShellListener guiclass="TestBeanGUI" testclass="BeanShellListener" testname="Token" enabled="true">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import java.*;
+
+
+String var1 = vars.get(&quot;C_Token&quot;);
+
+f = new FileOutputStream(&quot;C:\\Users\\rsnreddy\\Desktop\\Volvo\\TestData\\CCToken.txt&quot;, false);
+p = new PrintStream(f);
+
+p.print(var1+&quot;\r\n&quot;);
+
+p.close();
+f.close();
+
+
+//File file = new File(&quot;append.txt&quot;);
+
+/*
+FileWriter fr = new FileWriter(&quot;C:\\Users\\nikhitha.reddy\\Desktop\\Volvo\\Index.txt&quot;, false);
+fr.write(var1);
+fr.close();*/
+
+</stringProp>
+          </BeanShellListener>
+          <hashTree/>
+          <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="IndexID" enabled="false">
+            <collectionProp name="UserParameters.names">
+              <stringProp name="-687022771">IndexID</stringProp>
+            </collectionProp>
+            <collectionProp name="UserParameters.thread_values">
+              <collectionProp name="-1753070663">
+                <stringProp name="187832203">${__UUID}</stringProp>
+              </collectionProp>
+            </collectionProp>
+            <boolProp name="UserParameters.per_iteration">false</boolProp>
+          </UserParameters>
+          <hashTree/>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="OTBServices" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">2</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1370726934000</longProp>
+        <longProp name="ThreadGroup.end_time">1370726934000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">300</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Volvo_TMA_SC01_Create Shipment" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+    &quot;chaincode&quot;: &quot;ccshipments&quot;,&#xd;
+    &quot;endorsers&quot;: [&quot;otbservice5-abvolvobc-fra.blockchain.ocp.oraclecloud.com:${P_Port}&quot;],&#xd;
+    &quot;args&quot;: [&quot;CreateShipment&quot;],&#xd;
+    &quot;transientMap&quot;: {&#xd;
+        &quot;param0&quot;: &quot;{\&quot;Cargo\&quot;:{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Shirt Jewelery Virginia Licensed Extension\&quot;,\&quot;Hash\&quot;:\&quot;4bb322242c3e683ac3cb1bca94385c571e236c746294ac6a22b155d80aa4aa36\&quot;,\&quot;Link\&quot;:\&quot;https://alfreda.org\&quot;,\&quot;Type\&quot;:\&quot;application/vnd.collection+json\&quot;},{\&quot;Description\&quot;:\&quot;robust Burkina\&quot;,\&quot;Hash\&quot;:\&quot;cc09c4ae77e09136b9e23d3e1f787e14544403418230e51ca598937d1f0eaba0\&quot;,\&quot;Link\&quot;:\&quot;https://eleonore.org\&quot;,\&quot;Type\&quot;:\&quot;application/reginfo+xml\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Engineer\&quot;,\&quot;Email\&quot;:\&quot;Rodolfo.Prohaska@example.org\&quot;,\&quot;Name\&quot;:\&quot;Dan Shields I\&quot;,\&quot;Phone\&quot;:\&quot;444-923-9454\&quot;},{\&quot;Actor\&quot;:\&quot;Consultant\&quot;,\&quot;Email\&quot;:\&quot;Westley34@example.com\&quot;,\&quot;Name\&quot;:\&quot;Tracey Bernier\&quot;,\&quot;Phone\&quot;:\&quot;889-741-4173\&quot;}],\&quot;CreationDate\&quot;:\&quot;${P_CurrentDate}\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;BookingState\&quot;:\&quot;ASSIGNED\&quot;,\&quot;EquipmentNumber\&quot;:\&quot;t7\&quot;,\&quot;PlannedTotalWeight\&quot;:\&quot;80.000\&quot;,\&quot;PaymentTxId\&quot;:\&quot;PaymentTxId\&quot;,\&quot;EvenDatetime\&quot;:\&quot;B\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;circuit\&quot;,\&quot;AttributeValue\&quot;:\&quot;51683380-d065-44d0-b088-d9a2cae70d8b\&quot;}],\&quot;LegType\&quot;:\&quot;t6\&quot;,\&quot;LoadingMeter\&quot;:\&quot;8.85\&quot;,\&quot;RecipientInfo\&quot;:{\&quot;ClientTMAID\&quot;:\&quot;09456f24-a42f-4d86-8984-81ac936ef2e8\&quot;,\&quot;ServiceProviderTMAID\&quot;:\&quot;c45de283-9f33-4134-a9bf-18907bf986ba\&quot;},\&quot;CargoReferenceNumber\&quot;:\&quot;22\&quot;,\&quot;CargoServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da\&quot;,\&quot;ShipmentType\&quot;:\&quot;t5\&quot;,\&quot;StructVersion\&quot;:\&quot;1.0.0\&quot;,\&quot;TotalVolume\&quot;:\&quot;0.05\&quot;,\&quot;TotalWeight\&quot;:\&quot;0.01\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;NOT STARTED\&quot;,\&quot;TransportOrder\&quot;:[{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;SMTP tan Fish transmitter Chips\&quot;,\&quot;Hash\&quot;:\&quot;4f6bbaf3b65283a2be42f881fcab6813c9418e7ea1c2b7425f7c861801a82790\&quot;,\&quot;Link\&quot;:\&quot;http://thea.org\&quot;,\&quot;Type\&quot;:\&quot;application/pidf+xml\&quot;},{\&quot;Description\&quot;:\&quot;Analyst Account payment USB Rubber\&quot;,\&quot;Hash\&quot;:\&quot;a1e01b67388a8665245192c0960a6782cd704f0a8ddb80258319f61b5910aaa7\&quot;,\&quot;Link\&quot;:\&quot;https://alf.net\&quot;,\&quot;Type\&quot;:\&quot;video/vnd.iptvforum.1dparityfec-2005\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Strategist\&quot;,\&quot;Email\&quot;:\&quot;Benjamin.Monahan62@example.com\&quot;,\&quot;Name\&quot;:\&quot;Erika Denesik\&quot;,\&quot;Phone\&quot;:\&quot;952-793-8347\&quot;}],\&quot;EvenDatetime\&quot;:\&quot;${P_CurrentDate}\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;firewall\&quot;,\&quot;AttributeValue\&quot;:\&quot;9beeebcd-acf9-4c29-99d3-54481bb93f51\&quot;}],\&quot;LoadingMeter\&quot;:\&quot;8.16\&quot;,\&quot;ParentTOId\&quot;:\&quot;8\&quot;,\&quot;PreviousTOId\&quot;:\&quot;6\&quot;,\&quot;ShipFrom\&quot;:{\&quot;City\&quot;:\&quot;Lake Theresa\&quot;,\&quot;CountryCode\&quot;:\&quot;EEE\&quot;,\&quot;EarliestPickupDatetime\&quot;:\&quot;${P_EarlyPick}\&quot;,\&quot;LatestPickupDatetime\&quot;:\&quot;${P_PickupDate}\&quot;,\&quot;LocationName\&quot;:\&quot;2\&quot;,\&quot;Position\&quot;:{\&quot;Latitude\&quot;:\&quot;+4.95\&quot;,\&quot;Longitude\&quot;:\&quot;+9.58\&quot;},\&quot;PostalCode\&quot;:\&quot;4\&quot;,\&quot;SequenceNumber\&quot;:35,\&quot;Street\&quot;:\&quot;Evelyn Lake\&quot;,\&quot;TimeZone\&quot;:\&quot;NT\&quot;,\&quot;ShipFromContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}]},\&quot;ShipTo\&quot;:{\&quot;City\&quot;:\&quot;Blairville\&quot;,\&quot;CountryCode\&quot;:\&quot;AAA\&quot;,\&quot;EarliestDeliveryDatetime\&quot;:\&quot;${P_EarlyDeliveryDate}\&quot;,\&quot;LatestDeliveryDatetime\&quot;:\&quot;${P_DeliveryDate}\&quot;,\&quot;LocationName\&quot;:\&quot;2\&quot;,\&quot;Position\&quot;:{\&quot;Latitude\&quot;:\&quot;+5.26\&quot;,\&quot;Longitude\&quot;:\&quot;+7.77\&quot;},\&quot;PostalCode\&quot;:\&quot;4\&quot;,\&quot;SequenceNumber\&quot;:148,\&quot;Street\&quot;:\&quot;Randy Creek\&quot;,\&quot;TimeZone\&quot;:\&quot;NT\&quot;,\&quot;ShipToContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}]},\&quot;SubsequentTOId\&quot;:\&quot;7\&quot;,\&quot;TOServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TO\&quot;,\&quot;TOReferenceNumber\&quot;:\&quot;2\&quot;,\&quot;TotalVolume\&quot;:\&quot;4.73\&quot;,\&quot;TotalWeight\&quot;:\&quot;2.55\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;TransportUnit\&quot;:[{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;},{\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;Berkshire overriding Loop Qatar PCI\&quot;,\&quot;Hash\&quot;:\&quot;714da92e00dc997b1b782e6957f62902cb94a5812941cf882e7982fbd534fede\&quot;,\&quot;Link\&quot;:\&quot;https://frederick.info\&quot;,\&quot;Type\&quot;:\&quot;application/pkixcmp\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Coordinator\&quot;,\&quot;Email\&quot;:\&quot;Miracle_Daugherty@example.net\&quot;,\&quot;Name\&quot;:\&quot;Jessica Nikolaus\&quot;,\&quot;Phone\&quot;:\&quot;379-633-0587\&quot;},{\&quot;Actor\&quot;:\&quot;Developer\&quot;,\&quot;Email\&quot;:\&quot;Hipolito69@example.com\&quot;,\&quot;Name\&quot;:\&quot;Lynette Lind\&quot;,\&quot;Phone\&quot;:\&quot;719-912-6367\&quot;}],\&quot;DimensionUoM\&quot;:\&quot;KGM\&quot;,\&quot;EvenDatetime\&quot;:\&quot;21\&quot;,\&quot;EventTimezone\&quot;:\&quot;NT\&quot;,\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;application\&quot;,\&quot;AttributeValue\&quot;:\&quot;b847d23f-79d2-4f6d-91cf-64df20f3ef06\&quot;}],\&quot;GoodsDescription\&quot;:\&quot;5\&quot;,\&quot;GrossVolume\&quot;:\&quot;7.29\&quot;,\&quot;GrossWeight\&quot;:\&quot;0.21\&quot;,\&quot;HazmatClass\&quot;:\&quot;17\&quot;,\&quot;HazmatPackingGroup\&quot;:\&quot;18\&quot;,\&quot;HazmatProperShippingName\&quot;:\&quot;19\&quot;,\&quot;HazmatUNCode\&quot;:\&quot;16\&quot;,\&quot;Height\&quot;:\&quot;1.97\&quot;,\&quot;Length\&quot;:\&quot;5.97\&quot;,\&quot;NetVolume\&quot;:\&quot;4.72\&quot;,\&quot;NetWeight\&quot;:\&quot;2.54\&quot;,\&quot;OuterPackagingNumber\&quot;:\&quot;2\&quot;,\&quot;Stackable\&quot;:\&quot;YES\&quot;,\&quot;TUServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_TU\&quot;,\&quot;TUType\&quot;:\&quot;3\&quot;,\&quot;TemperatureControlled\&quot;:\&quot;NO\&quot;,\&quot;TransportExecutionState\&quot;:\&quot;STARTED\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;,\&quot;Width\&quot;:\&quot;4.59\&quot;}],\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;}],\&quot;VesselName\&quot;:\&quot;t8\&quot;,\&quot;VolumeUoM\&quot;:\&quot;INH\&quot;,\&quot;WeightUoM\&quot;:\&quot;INH\&quot;},\&quot;Capacity\&quot;:{\&quot;CapacityServiceAssetId\&quot;:\&quot;2450cbff-16de-4134-a9bf-864b4b2a93da_CP\&quot;,\&quot;CapacityReferenceNumber\&quot;:\&quot;4e7e3633-6179-45ee-9203-016ded7a78d2\&quot;,\&quot;CarrierNumber\&quot;:\&quot;23232\&quot;,\&quot;CustomerNumber\&quot;:\&quot;XSSAX\&quot;,\&quot;CarrierContractNumber\&quot;:\&quot;000013323\&quot;,\&quot;State\&quot;:\&quot;ASSIGNED\&quot;,\&quot;RequiredConfirmDateTime\&quot;:\&quot;${P_EarlyPick}\&quot;,\&quot;PartialAcceptanceAllowed\&quot;:\&quot;YES\&quot;,\&quot;AutoAccept\&quot;:\&quot;NO\&quot;,\&quot;TransportMode\&quot;:\&quot;FTL\&quot;,\&quot;EquipmentType\&quot;:\&quot;C\&quot;,\&quot;CargoTerms\&quot;:\&quot;B\&quot;,\&quot;EarliestPickupDatetime\&quot;:\&quot;${P_EarlyPick}\&quot;,\&quot;LatestPickupDatetime\&quot;:\&quot;${P_PickupDate}\&quot;,\&quot;EarliestDeliveryDatetime\&quot;:\&quot;${P_EarlyDeliveryDate}\&quot;,\&quot;LatestDeliveryDatetime\&quot;:\&quot;${P_DeliveryDate}\&quot;,\&quot;TimeZone\&quot;:\&quot;NT\&quot;,\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;leverage Zambian reboot Small\&quot;,\&quot;Hash\&quot;:\&quot;cf24971e2db82edd12f3f7a27b01e2230d7aa9b28f12425b2f413789a98eadba\&quot;,\&quot;Link\&quot;:\&quot;https://keshaun.org\&quot;,\&quot;Type\&quot;:\&quot;video/x-sgi-movie\&quot;}],\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;Director\&quot;,\&quot;Email\&quot;:\&quot;Desiree.Harber@example.net\&quot;,\&quot;Name\&quot;:\&quot;Hazel Willms\&quot;,\&quot;Phone\&quot;:\&quot;727-533-0628\&quot;}],\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;driver\&quot;,\&quot;AttributeValue\&quot;:\&quot;df44ac6d-ce4b-47a4-ba84-31c28ca438d7\&quot;}]}}&quot;&#xd;
+    },&#xd;
+    &quot;timeout&quot;: 60000,&#xd;
+    &quot;sync&quot;: true&#xd;
+    &#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${P_bcURL}</stringProp>
+          <stringProp name="HTTPSampler.port">7443</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/restproxy/api/v2/channels/${P_Instance}/transactions</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="TestPlan.comments">High Load ${P_Port}</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="Content-Type" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${P_shipmentToken}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Host</stringProp>
+                <stringProp name="Header.value">${P_bcURL}:7443</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Cache-Control</stringProp>
+                <stringProp name="Header.value">no-cache</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept-Encoding</stringProp>
+                <stringProp name="Header.value">gzip, deflate, br</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Connection</stringProp>
+                <stringProp name="Header.value">keep-alive</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Length</stringProp>
+                <stringProp name="Header.value">234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Implementation</stringProp>
+                <stringProp name="Header.value">Java</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <AuthManager guiclass="AuthPanel" testclass="AuthManager" testname="HTTP Authorization Manager" enabled="false">
+            <collectionProp name="AuthManager.auth_list">
+              <elementProp name="" elementType="Authorization">
+                <stringProp name="Authorization.url">https://idcs-1331a7ee08f34ddd853ca73c8c210a48.identity.oraclecloud.com</stringProp>
+                <stringProp name="Authorization.username">TMAFounderTEST-aobylwywrfh27ti5mxeuizb3iuyj2d4q_APPID</stringProp>
+                <stringProp name="Authorization.password">dfe38944-0205-4e6a-b61e-483b50a26efe</stringProp>
+                <stringProp name="Authorization.domain"></stringProp>
+                <stringProp name="Authorization.realm"></stringProp>
+              </elementProp>
+            </collectionProp>
+            <boolProp name="AuthManager.controlledByThreadGroup">false</boolProp>
+          </AuthManager>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="C_CargoAssetId" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">C_CargoAssetId</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;,&quot;payload&quot;:{&quot;CargoAssetId&quot;:&quot;(.*?)&quot;},</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">CargoAssetId Not Found</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+            <stringProp name="Scope.variable"></stringProp>
+            <stringProp name="Sample.scope">all</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="JSR223 PostProcessor" enabled="true">
+            <stringProp name="cacheKey">true</stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="script">import java.*;
+
+
+String var1 = vars.get(&quot;C_CargoAssetId&quot;);
+
+f = new FileOutputStream(&quot;C:\\Users\\rsnreddy\\Desktop\\Volvo\\TestData\\CreateShipment.txt&quot;, true);
+p = new PrintStream(f);
+
+p.print(var1+&quot;\r\n&quot;);
+
+p.close();
+f.close();</stringProp>
+            <stringProp name="scriptLanguage">java</stringProp>
+          </JSR223PostProcessor>
+          <hashTree/>
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="props.get" enabled="false">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">false</stringProp>
+            <stringProp name="script">props.put(&quot;C_CargoAssetId&quot;,&quot;${C_CargoAssetId}&quot;);</stringProp>
+          </JSR223PostProcessor>
+          <hashTree/>
+          <JSR223PostProcessor guiclass="TestBeanGUI" testclass="JSR223PostProcessor" testname="props.get" enabled="false">
+            <stringProp name="scriptLanguage">groovy</stringProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="cacheKey">false</stringProp>
+            <stringProp name="script">props.put(&quot;C_CargoAssetId123&quot;,&quot;${C_CargoAssetId}&quot;);</stringProp>
+          </JSR223PostProcessor>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="2029870891">&quot;returnCode&quot;:&quot;Success&quot;,&quot;error&quot;:&quot;&quot;,&quot;result&quot;:</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="false">
+            <stringProp name="ConstantTimer.delay">2000</stringProp>
+          </ConstantTimer>
+          <hashTree/>
+        </hashTree>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="true">
+          <stringProp name="cacheKey">false</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">props.put(&quot;C_CargoAssetId123&quot;,&quot;${C_CargoAssetId}&quot;);</stringProp>
+          <stringProp name="scriptLanguage">groovy</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="false">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>true</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>true</responseData>
+              <samplerData>true</samplerData>
+              <xml>true</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>true</responseHeaders>
+              <requestHeaders>true</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <fileName>true</fileName>
+              <hostname>true</hostname>
+              <threadCounts>true</threadCounts>
+              <sampleCount>true</sampleCount>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename">${Filepath}/${__P(filename,200Users_100 Rampup)}_${__time(yyyy-MM-dd)}.csv</stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">true</boolProp>
+        </DebugSampler>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="CarrierConnect" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">2</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.duration">120</stringProp>
+        <stringProp name="ThreadGroup.delay">10</stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <JSR223Sampler guiclass="TestBeanGUI" testclass="JSR223Sampler" testname="JSR223 Sampler" enabled="true">
+          <stringProp name="cacheKey">false</stringProp>
+          <stringProp name="filename"></stringProp>
+          <stringProp name="parameters"></stringProp>
+          <stringProp name="script">abcd = props.get(&quot;C_CargoAssetId123&quot;);
+vars.put(&quot;C_CargoAssetId&quot;,abcd);</stringProp>
+          <stringProp name="scriptLanguage">groovy</stringProp>
+        </JSR223Sampler>
+        <hashTree/>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">true</boolProp>
+        </DebugSampler>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Volvo_TMA_SC02_GetShipmentby CargoID" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;chaincode&quot;: &quot;ccshipments&quot;,&#xd;
+  &quot;args&quot;:[&quot;GetShipmentByCargoId&quot;],&#xd;
+  &quot;endorsers&quot;: [&quot;carrierconnect5-2-abvolvobc-fra.blockchain.ocp.oraclecloud.com:20009&quot;],&#xd;
+  &quot;transientMap&quot;: {&#xd;
+      &quot;param0&quot;: &quot;${C_CargoAssetId}&quot;,&#xd;
+      &quot;param1&quot;: &quot;DDDDDD&quot;&#xd;
+  },&#xd;
+  &quot;timeout&quot;: 6000,&#xd;
+  &quot;sync&quot;: true&#xd;
+} </stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${P_CarrierURL}</stringProp>
+          <stringProp name="HTTPSampler.port">7443</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/restproxy/api/v2/channels/${P_Instance}/transactions</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          <stringProp name="TestPlan.comments">props.get(&quot;C_CargoAssetId&quot;)</stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="Content-Type" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${P_CCToken}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Host</stringProp>
+                <stringProp name="Header.value">${P_CarrierURL}:7443</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Cache-Control</stringProp>
+                <stringProp name="Header.value">no-cache</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept-Encoding</stringProp>
+                <stringProp name="Header.value">gzip, deflate, br</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Connection</stringProp>
+                <stringProp name="Header.value">keep-alive</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Length</stringProp>
+                <stringProp name="Header.value">234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Implementation</stringProp>
+                <stringProp name="Header.value">Java</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <BeanShellListener guiclass="TestBeanGUI" testclass="BeanShellListener" testname="BeanShell Listener" enabled="false">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import java.*;
+
+
+String var1 = vars.get(&quot;IndexID&quot;);
+
+f = new FileOutputStream(&quot;C:\\Users\\nikhitha.reddy\\Desktop\\Volvo\\Index.txt&quot;, false);
+p = new PrintStream(f);
+
+p.print(var1+&quot;\r\n&quot;);
+
+p.close();
+f.close();
+
+
+//File file = new File(&quot;append.txt&quot;);
+
+/*
+FileWriter fr = new FileWriter(&quot;C:\\Users\\nikhitha.reddy\\Desktop\\Volvo\\Index.txt&quot;, false);
+fr.write(var1);
+fr.close();*/
+
+</stringProp>
+          </BeanShellListener>
+          <hashTree/>
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="false">
+            <stringProp name="ConstantTimer.delay">7000</stringProp>
+            <stringProp name="RandomTimer.range">1000</stringProp>
+          </GaussianRandomTimer>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="2029870891">&quot;returnCode&quot;:&quot;Success&quot;,&quot;error&quot;:&quot;&quot;,&quot;result&quot;:</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="false">
+            <stringProp name="ConstantTimer.delay">8000</stringProp>
+          </ConstantTimer>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Volvo_TMA_SC03_CreateTS By CargoAssetId_SC03" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;chaincode&quot;: &quot;ccshipments&quot;,&#xd;
+  &quot;endorsers&quot;: [&quot;carrierconnect5-2-abvolvobc-fra.blockchain.ocp.oraclecloud.com:20009&quot;],&#xd;
+  &quot;args&quot;:[&quot;CreateTransportStatus&quot;],&#xd;
+  &quot;transientMap&quot;: {&#xd;
+  &quot;param0&quot;: &quot;{\&quot;AssetType\&quot;:\&quot;\&quot;,\&quot;TSAssetId\&quot;:\&quot;\&quot;,\&quot;PaymentTxId\&quot;:\&quot;SampleTxnId\&quot;,\&quot;TSServiceAssetId\&quot;:\&quot;2AG\&quot;,\&quot;CargoAssetId\&quot;:\&quot;${C_CargoAssetId}\&quot;,\&quot;CargoReferenceNumber\&quot;:\&quot;1\&quot;,\&quot;TOAssetId\&quot;:null,\&quot;TUAssetId\&quot;:null,\&quot;CapacityAssetId\&quot;:\&quot;\&quot;,\&quot;StructVersion\&quot;:\&quot;1.0.0\&quot;,\&quot;TransportStatusType\&quot;:\&quot;STANDARD\&quot;,\&quot;StatusCode\&quot;:\&quot;BOOKING ACCEPTED\&quot;,\&quot;StatusReason\&quot;:\&quot;R\&quot;,\&quot;CreationDateTime\&quot;:\&quot;${P_CurrentDate}\&quot;,\&quot;CreationTimeZone\&quot;:\&quot;NT\&quot;,\&quot;EventDateTime\&quot;:\&quot;${P_DeliveryDate}\&quot;,\&quot;EventTimeZone\&quot;:\&quot;NT\&quot;,\&quot;EstimatedDateTime\&quot;:\&quot;${P_DeliveryDate}\&quot;,\&quot;EstimationTimeZone\&quot;:\&quot;NT\&quot;,\&quot;EquipmentNumber\&quot;:\&quot;NEW EQUIPMENT\&quot;,\&quot;Location\&quot;:{\&quot;Position\&quot;:{\&quot;Latitude\&quot;:\&quot;-11.000000\&quot;,\&quot;Longitude\&quot;:\&quot;11.000000\&quot;},\&quot;SequenceNumber\&quot;:1,\&quot;LocationName\&quot;:\&quot;A\&quot;,\&quot;Street\&quot;:\&quot;A\&quot;,\&quot;City\&quot;:\&quot;D\&quot;,\&quot;PostalCode\&quot;:\&quot;GG\&quot;,\&quot;CountryCode\&quot;:\&quot;RRR\&quot;},\&quot;ContactInfo\&quot;:[{\&quot;Actor\&quot;:\&quot;A\&quot;,\&quot;Name\&quot;:\&quot;B\&quot;,\&quot;Email\&quot;:\&quot;test@onet.pl\&quot;,\&quot;Phone\&quot;:\&quot;D\&quot;}],\&quot;Attachment\&quot;:[{\&quot;Description\&quot;:\&quot;D\&quot;,\&quot;Type\&quot;:\&quot;A\&quot;,\&quot;Link\&quot;:\&quot;B\&quot;,\&quot;Hash\&quot;:\&quot;C\&quot;}],\&quot;ExternalReferences\&quot;:[{\&quot;AttributeDescription\&quot;:\&quot;A\&quot;,\&quot;AttributeValue\&quot;:\&quot;B\&quot;}]}&quot;&#xd;
+  },&#xd;
+  &quot;timeout&quot;: 60000,&#xd;
+  &quot;sync&quot;: true&#xd;
+}&#xd;
+&#xd;
+</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${P_CarrierURL}</stringProp>
+          <stringProp name="HTTPSampler.port">7443</stringProp>
+          <stringProp name="HTTPSampler.protocol">https</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/restproxy/api/v2/channels/carrier-connect/transactions</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="Content-Type" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/json</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Authorization</stringProp>
+                <stringProp name="Header.value">Bearer ${P_CCToken}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Host</stringProp>
+                <stringProp name="Header.value">${P_CarrierURL}:7443</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Cache-Control</stringProp>
+                <stringProp name="Header.value">no-cache</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept-Encoding</stringProp>
+                <stringProp name="Header.value">gzip, deflate, br</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Connection</stringProp>
+                <stringProp name="Header.value">keep-alive</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Length</stringProp>
+                <stringProp name="Header.value">234</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Implementation</stringProp>
+                <stringProp name="Header.value">Java</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <BeanShellListener guiclass="TestBeanGUI" testclass="BeanShellListener" testname="BeanShell Listener" enabled="false">
+            <boolProp name="resetInterpreter">false</boolProp>
+            <stringProp name="parameters"></stringProp>
+            <stringProp name="filename"></stringProp>
+            <stringProp name="script">import java.*;
+
+
+String var1 = vars.get(&quot;IndexID&quot;);
+
+f = new FileOutputStream(&quot;C:\\Users\\nikhitha.reddy\\Desktop\\Volvo\\Index.txt&quot;, false);
+p = new PrintStream(f);
+
+p.print(var1+&quot;\r\n&quot;);
+
+p.close();
+f.close();
+
+
+//File file = new File(&quot;append.txt&quot;);
+
+/*
+FileWriter fr = new FileWriter(&quot;C:\\Users\\nikhitha.reddy\\Desktop\\Volvo\\Index.txt&quot;, false);
+fr.write(var1);
+fr.close();*/
+
+</stringProp>
+          </BeanShellListener>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="C_TMAID" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">C_TMAID</stringProp>
+            <stringProp name="RegexExtractor.regex">&quot;,&quot;TMAID&quot;:&quot;(.*?)&quot;,&quot;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">C_TMAID Not Found</stringProp>
+            <stringProp name="RegexExtractor.match_number">1</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="false">
+            <stringProp name="ConstantTimer.delay">10000</stringProp>
+            <stringProp name="RandomTimer.range">1000</stringProp>
+          </GaussianRandomTimer>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="2029870891">&quot;returnCode&quot;:&quot;Success&quot;,&quot;error&quot;:&quot;&quot;,&quot;result&quot;:</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">2</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+          <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="false">
+            <stringProp name="ConstantTimer.delay">8000</stringProp>
+          </ConstantTimer>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="false">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <kg.apc.jmeter.vizualizers.CorrectedResultCollector guiclass="kg.apc.jmeter.vizualizers.TransactionsPerSecondGui" testclass="kg.apc.jmeter.vizualizers.CorrectedResultCollector" testname="jp@gc - Transactions per Second" enabled="false">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+        <longProp name="interval_grouping">1000</longProp>
+        <boolProp name="graph_aggregated">false</boolProp>
+        <stringProp name="include_sample_labels"></stringProp>
+        <stringProp name="exclude_sample_labels"></stringProp>
+        <stringProp name="start_offset"></stringProp>
+        <stringProp name="end_offset"></stringProp>
+        <boolProp name="include_checkbox_state">false</boolProp>
+        <boolProp name="exclude_checkbox_state">false</boolProp>
+      </kg.apc.jmeter.vizualizers.CorrectedResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
